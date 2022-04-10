@@ -1,0 +1,43 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.result {
+    border: 1px solid;
+    padding: 12px;
+    margin: 4px;
+    width: 250px;
+}
+
+.input {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+}
+
+.functions {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.functions button {
+    flex: 1 1 auto;
+    width: 50px;
+}
+.buttons {
+    display: grid;
+    gap: 2px;
+    grid-template-rows: repeat(3, 50px);
+    grid-template-columns: repeat(3, 50px);
+}
+
+.buttons .zero {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 4;
+    height: 50px;
+}
