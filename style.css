@@ -29,10 +29,16 @@ body {
 .functions button {
     flex: 1 1 auto;
     width: 50px;
+    background-color: lightblue;
+    border: 1px solid;
+    border-radius: 5px;
 }
 
 .equal {
     width: 50px;
+    background-color: lightblue;
+    border: 1px solid;
+    border-radius: 5px;
 }
 
 .buttons {
