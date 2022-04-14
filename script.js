@@ -54,8 +54,7 @@ function setOperation(operation) {
     if (numbers.reset) {
         numbers.second = ""
         numbers.reset = false
-    }
-    if (numbers.second) {
+    } else if (numbers.second) {
         calculate()
     }
     numbers.operation = operation
