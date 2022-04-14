@@ -15,7 +15,14 @@ const operations = {
     "+": (one, two) => one + two,
     "-": (one, two) => one - two,
     "*": (one, two) => one * two,
-    "/": (one, two) => one / two,
+    "/": (one, two) => {
+        if(one == 0 || two == 0) {
+            clearInput()
+            updateTextBox("😡")
+            return
+        }
+        return one / two
+    },
 }
 
 function calculate() {
@@ -23,6 +30,10 @@ function calculate() {
         return
     }
     let result = operations[numbers.operation](Number(numbers.first), Number(numbers.second))
+    if (!result) {
+        console.log("returning")
+        return
+    }
     updateTextBox(result)
     numbers.first = String(result)
     numbers.reset = true
