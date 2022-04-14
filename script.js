@@ -24,7 +24,7 @@ function calculate() {
     }
     let result = operations[numbers.operation](Number(numbers.first), Number(numbers.second))
     updateTextBox(result)
-    numbers.first = Number(result)
+    numbers.first = String(result)
     numbers.reset = true
     numbers.current = "second"
 }
@@ -41,8 +41,8 @@ function updateTextBox(text) {
     result.textContent = text || `${numbers.first} ${numbers.operation} ${numbers.second}`
 }
 
-function appendNumber(number) {
-    numbers[numbers.current] = (numbers.reset && number != numbers[numbers.current]) && Number(number) || Number(String(numbers[numbers.current] + number))
+function appendString(number) {
+    numbers[numbers.current] = (numbers.reset && number != numbers[numbers.current]) && String(number) || String(String(numbers[numbers.current] + number))
     numbers.reset = false
     updateTextBox()
 }
@@ -64,7 +64,7 @@ function setOperation(operation) {
 }
 
 function processButtonPress(button, type) {
-    let f = type == "number" && appendNumber || setOperation
+    let f = type == "number" && appendString || setOperation
     f(button.value)
 }
 
@@ -78,6 +78,14 @@ functions.forEach(button => {
     button.addEventListener("click", event => {
         if (event.target.value == "C") {
             clearInput() 
+            return
+        } else if (event.target.value == ".") {
+            if (numbers[numbers.current].indexOf(".") != -1) {
+                console.warn("PONTO AÍ")
+                return
+            }
+            numbers[numbers.current] += "."
+            updateTextBox()
             return
         }
         processButtonPress(event.target, "function")
