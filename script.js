@@ -18,6 +18,17 @@ const operations = {
     "/": (one, two) => one / two,
 }
 
+function calculate() {
+    if (numbers.first == "" || numbers.second == "" || numbers.operation == "") {
+        return
+    }
+    let result = operations[numbers.operation](Number(numbers.first), Number(numbers.second))
+    updateTextBox(result)
+    numbers.first = String(result)
+    numbers.reset = true
+    numbers.current = "second"
+}
+
 function clear() {
     numbers.first = ""
     numbers.second = ""
@@ -38,6 +49,10 @@ function appendNumber(number) {
 
 function setOperation(operation) {
     if (numbers.first == "") {
+        return
+    }
+    if (numbers.second) {
+        calculate()
         return
     }
     if (numbers.reset) {
@@ -70,15 +85,4 @@ functions.forEach(button => {
     })
 })
 
-equal.addEventListener("click", event => {
-    if (numbers.first == "" || numbers.second == "" || numbers.operation == "") {
-        return
-    }
-    let result = operations[numbers.operation](Number(numbers.first), Number(numbers.second))
-    updateTextBox(result)
-    numbers.first = String(result)
-    numbers.reset = true
-    // numbers.second = ""
-    // numbers.operation = ""
-    numbers.current = "second"
-})
+equal.addEventListener("click", calculate)
